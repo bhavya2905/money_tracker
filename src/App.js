@@ -6,6 +6,7 @@ function App() {
   const [datetime,setDatetime] = useState('');
   const [desc,setDesc] = useState('');
   const [transactions,setTransactions] = useState([]);
+  
   useEffect(()=>{
     getTransactions().then(setTransactions) 
   },[]);
@@ -17,8 +18,8 @@ function App() {
      return json;
     }
 
-    function adddNewTransaction(ev){
-      ev.preventDefault();
+    function adddNewTransaction(){
+      
       const url = process.env.REACT_APP_API_URL + '/transaction';
       const price = name.split(' ')[0];
       fetch(url,{
@@ -69,7 +70,7 @@ function App() {
                  value={desc} 
                  onChange={ev=>setDesc(ev.target.value)}
                  placeholder='description' required='true'
-                  
+
                  />
         </div>
         <button type="submit">Add new transcation</button>
